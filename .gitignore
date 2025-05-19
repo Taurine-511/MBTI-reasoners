@@ -1,0 +1,14 @@
+# Virtual environments
+.env
+.venv/
+
+# Python
+__pycache__
+*.ipynb
+.ruff_cache
+
+# Data
+data/
+
+# Development tools
+.pre-commit-config.yaml
