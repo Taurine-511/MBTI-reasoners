@@ -25,10 +25,11 @@ class ReasoningConfig(SearchConfig):
             .replace("<question>", self.example["generated_question"])
             .replace("<action>", "".join(state.action_history))
         )
+        # 現状はトークンレベルでの探索を行う
         outputs = self.base_model.generate(
             [prompts],
             num_return_sequences=self.n_candidate,
-            max_length=20,
+            max_new_tokens=32,
             temperature=self.temperature,
             do_sample=True,
             hide_input=True,

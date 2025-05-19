@@ -9,13 +9,15 @@ from reasoners.algorithm import BeamSearch
 
 
 def main():
-    model_name = "meta-llama/Llama-3.1-8B"
+    model_name = "llm-jp/llm-jp-3-13b-instruct3"
     model = HFModel(
         model_name,
         model_name,
         device=torch.device("cuda:0"),
-        max_batch_size=1,
+        max_batch_size=32,
         max_new_tokens=512,
+        torch_dtype=torch.bfloat16,
+        attn_implementation="flash_attention_2",
     )
 
     with open("data/answers_ENFP_nemotron.json", "r") as f:

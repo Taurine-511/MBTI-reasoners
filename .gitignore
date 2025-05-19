@@ -12,3 +12,6 @@ data/
 
 # Development tools
 .pre-commit-config.yaml
+
+# code changes
+changes/
