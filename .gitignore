@@ -9,9 +9,7 @@ __pycache__
 
 # Data
 data/
+logs/
 
 # Development tools
 .pre-commit-config.yaml
-
-# code changes
-changes/

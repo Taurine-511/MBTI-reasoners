@@ -11,12 +11,14 @@ class ReasoningConfig(SearchConfig):
         prompt: dict,
         temperature: float = 0.8,
         n_candidate: int = 4,
+        max_new_tokens: int = 32,
     ):
         super().__init__()
         self.base_model = base_model
         self.prompt = prompt
         self.temperature = temperature
         self.n_candidate = n_candidate
+        self.max_new_tokens = max_new_tokens
         self.example = None
 
     def get_actions(self, state: ReasoningState) -> list[ReasoningAction]:
@@ -29,7 +31,7 @@ class ReasoningConfig(SearchConfig):
         outputs = self.base_model.generate(
             [prompts],
             num_return_sequences=self.n_candidate,
-            max_new_tokens=32,
+            max_new_tokens=self.max_new_tokens,
             temperature=self.temperature,
             do_sample=True,
             hide_input=True,

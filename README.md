@@ -1,6 +1,15 @@
 # Test-time Computeのレポジトリ
 ライブラリllm-reasonersをベースとして、MBTIの思考トレースを模倣するtest-time compute手法を実験するレポジトリ
 
+# セットアップ
+1. 必要なライブラリをインストールします。uvでなくても良いです。
+```bash
+uv venv
+./.venv/bin/activate
+uv pip install .
+```
+2. .venv/lib/python3.11/site-packages/reasoners/lm/hf_model.pyをchanges/hf_model.pyに置き換えてください。
+3. main.pyを実行して推論
 
 # TODO
 - llm-jp/llm-jp-3-13b-instruct3を指定したときに出るエラーの解消
@@ -18,3 +27,9 @@
         - 検討事項
             - quantize vs (torch.compile, bfloat16)
             - HFから乗り換える
+            - static kv cacheとtorch.compileの併用
+- 目安時間
+    - quantize=fp4だと40s/it
+    - bfloat16, torch.compile, static kv cacheだとよくわからない挙動
+        - 生成が徐々に加速している, 30s/it→16s/it→まだ早くなりそう
+        - 速さと品質からこちらの方が良さそう
